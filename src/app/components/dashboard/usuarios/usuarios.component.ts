@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';  
+import { Component, ViewChild } from '@angular/core';  
 import { Usuario } from '../../../interfaces/usuario';
 import { MatTableDataSource } from '@angular/material/table';
 import { UsuarioService } from '../../../services/usuario.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 
 
@@ -15,8 +17,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class UsuariosComponent {  
  listUsuarios: Usuario[] = [];
 
-  displayedColumns: string[] = ['usuario', 'nombre', 'apellido', 'sexo', 'acciones'];
-  
+  displayedColumns: string[] = ['usuario', 'nombre', 'apellido', 'sexo', 'acciones']; 
+  @ViewChild(MatPaginator) paginator!: MatPaginator; 
+  @ViewChild(MatSort) sort!: MatSort;
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator; 
+    this.dataSource.sort = this.sort;
+    
+  }
+
   dataSource!: MatTableDataSource<any>;  
   constructor(private _usuarioService: UsuarioService,  private _snackBar: MatSnackBar){}   
   ngOnInit(): void{ 

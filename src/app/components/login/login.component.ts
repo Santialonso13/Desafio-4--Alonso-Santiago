@@ -27,7 +27,8 @@ iniciarSesion(){
 if(usuario == 'admin' && password == 'admin123'){  
   this.fakeLoading(); 
 
-}else{ 
+} 
+else{ 
   this.error(); 
   this.form.reset();
 }
@@ -45,7 +46,7 @@ fakeLoading(){
   setTimeout(() =>{  
 
 
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['dashboard/usuarios']);
 
   },1500); 
 }

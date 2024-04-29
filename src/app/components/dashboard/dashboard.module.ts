@@ -11,9 +11,10 @@ import { ReportesComponent } from './reportes/reportes.component';
 import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
 
 
+
 @NgModule({
   declarations: [  
-    DashboardComponent, InicioComponent, NavbarComponent, UsuariosComponent, ReportesComponent, CrearUsuarioComponent
+    DashboardComponent, InicioComponent, NavbarComponent, UsuariosComponent, ReportesComponent, CrearUsuarioComponent, 
   
   ],
   imports: [
