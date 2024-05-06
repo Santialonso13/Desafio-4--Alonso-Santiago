@@ -14,12 +14,13 @@ import { MatSort } from '@angular/material/sort';
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.scss'
 })
-export class UsuariosComponent {  
+export class UsuariosComponent {
  listUsuarios: Usuario[] = [];
 
   displayedColumns: string[] = ['usuario', 'nombre', 'apellido', 'sexo', 'acciones']; 
   @ViewChild(MatPaginator) paginator!: MatPaginator; 
   @ViewChild(MatSort) sort!: MatSort;
+ 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator; 
     this.dataSource.sort = this.sort;
@@ -32,8 +33,14 @@ export class UsuariosComponent {
    this.cargarUsuarios (); 
   }
 
-  cargarUsuarios(){ 
-    this.listUsuarios = this._usuarioService.getUsuario(); 
+  cargarUsuarios(){  
+    this._usuarioService.getUsuarios().subscribe(data => { 
+      console.log(data);  
+      this.listUsuarios = data; 
+      
+    })
+    
+   // this.listUsuarios = this._usuarioService.getUsuario(); 
     this.dataSource = new MatTableDataSource(this.listUsuarios)
   }
 

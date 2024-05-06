@@ -1,29 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../interfaces/usuario';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService { 
-  listUsuarios: Usuario[] = [
-    {usuario: "santiA", nombre:"Santiago", apellido:"Alonso", sexo:"Masculino"}, 
-    {usuario: "juanP", nombre:"Juan", apellido:"Perez", sexo:"Masculino"}, 
-    {usuario: "daniG", nombre:"Daniela", apellido:"Gonzalez", sexo:"Femenino"}, 
-    {usuario: "martaD", nombre:"Marta", apellido:"Diaz", sexo:"Femenino"}, 
-    {usuario: "albertoR", nombre:"Alberto", apellido:"Rodriguez", sexo:"Masculino"},
-  
-  ];
+export class UsuarioService {  
+  url='http://localhost:3000/users';
+constructor(private http: HttpClient){}
 
-  constructor() { } 
-  getUsuario(){ 
-    return this.listUsuarios.slice();
+  getUsuarios():Observable<any>{  
+    return this.http.get<Usuario>(this.url);
+   // return this.listUsuarios.slice();  
+   //return this.httpClient.get<Usuario[]>('http://localhost:3000/users');
   } 
 
   eliminarUsuario(index:number){ 
-    this.listUsuarios.splice(index, 1); 
+   // this.listUsuarios.splice(index, 1); 
 
   } 
   agregarUsuario(usuario: Usuario){ 
-    this.listUsuarios.unshift(usuario);
+    //this.listUsuarios.unshift(usuario);
   }
 }
